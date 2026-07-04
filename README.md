@@ -1,103 +1,114 @@
-# Blueprint Install — LashariGamer Script
+# 🚀 Blueprint Install — LashariGamer Script
 
-Ek simple aur fast auto-installer script jo **Pterodactyl Panel** par **Blueprint Framework** aur uske addons ko automatically install kar deta hai — bina manually har command copy-paste kiye.
-
-Made By **LashariGamer**
+A fast, fully automated installer for **Blueprint Framework** on **Pterodactyl Panel**. No manual commands, no copy-pasting a dozen steps — just one line and you're done.
 
 ---
 
-## 📋 Requirements (Zaroori Cheezein)
+## ⚡ Quick Install
 
-Script chalane se pehle ye cheezein already ready honi chahiye:
-
-- Ek VPS (Ubuntu/Debian based)
-- **Pterodactyl Panel** already installed ho, aur uska path `/var/www/pterodactyl` ho
-- `sudo` / root access
-- Internet connection
-
-> ⚠️ Agar Pterodactyl Panel install nahi hai, toh pehle panel install karein, phir ye script chalayein.
-
----
-
-## 🚀 Installation (Single Command)
-
-Bas ek command run karni hai apne VPS ke terminal mein — koi `git clone` karne ki zaroorat nahi:
+Run this single command on your VPS:
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/atifqmi-max/blueprint-install/main/install.sh)
 ```
 
-Command run karne ke baad:
-
-1. Script ek banner show karega — **LashariGamer Script**
-2. Ek confirmation puchega:
-   ```
-   Continue Installing (y/n):
-   ```
-   - `y` dabao → Installation shuru ho jayegi
-   - `n` dabao → Script exit ho jayega, kuch install nahi hoga
+That's it. No `git clone`, no extra setup — the script handles everything from start to finish.
 
 ---
 
-## ⚙️ Ye Script Kya Karta Hai
+## 📖 Overview
 
-Script pura process automatic chalata hai:
+This script automates the entire process of installing **Blueprint Framework** onto an existing Pterodactyl Panel setup, along with the addon installer that follows it. It's built to save time, reduce human error, and give a clean, guided installation experience straight from your terminal.
 
-### Step 1 — Blueprint Framework Setup
-- Zaroori packages install karta hai (`curl`, `wget`, `unzip`, `git`, `gnupg`, `zip`)
-- Blueprint Framework ka latest release download karta hai
-- NodeJS (v22) aur Yarn setup karta hai
-- Pterodactyl directory mein `yarn install` chalata hai
-- `.blueprintrc` config file banata hai (webserver user set karta hai)
-- `blueprint.sh` ko permission deta hai aur run karta hai
-
-### Step 2 — Addon Installer
-- Blueprint addon installer script automatically run karta hai:
-  ```bash
-  bash <(curl -fsSL https://raw.githubusercontent.com/hopingboyz/blueprint/main/addon-installer.sh)
-  ```
-
-### Step 3 — Completion
-- Aakhir mein banner phir se show hota hai:
-  ```
-  LashariGamer Script
-       Made By LashariGamer
-
-  Thanks For Using This Script
-  ```
+When you run the command above, you'll see a branded banner, a confirmation prompt, and then a fully automated installation flow — no further input required once you confirm.
 
 ---
 
-## 📁 Files
+## ✨ Features
 
-| File          | Description                                  |
-|---------------|-----------------------------------------------|
-| `install.sh`  | Main installer script — sab kuch automatic karta hai |
+- **One-command installation** — just paste and run, nothing else to download manually
+- **Interactive confirmation** — asks before making any changes to your server
+- **Fully automated setup** — installs all required dependencies, configures Blueprint, and runs the framework installer
+- **Addon support** — automatically continues into the addon installer after the core setup finishes
+- **Clean terminal output** — clear step indicators so you always know what's happening
+- **Safe exit option** — decline the prompt and the script closes without touching your system
+
+---
+
+## ✅ Requirements
+
+Before running the script, make sure your VPS meets the following:
+
+| Requirement | Details |
+|---|---|
+| OS | Ubuntu / Debian based Linux |
+| Panel | Pterodactyl Panel already installed |
+| Path | Panel installed at `/var/www/pterodactyl` |
+| Access | Root or `sudo` privileges |
+| Network | Active internet connection |
+
+> If your Pterodactyl Panel isn't installed yet, install it first — this script only sets up Blueprint on top of an existing panel.
+
+---
+
+## 🛠️ How It Works
+
+Once you run the install command and confirm with `y`, the script takes over completely. It:
+
+1. Displays the **LashariGamer Script** banner and asks for confirmation
+2. Prepares your system with the required tools and dependencies
+3. Downloads and sets up the **Blueprint Framework** on your panel
+4. Configures Node.js, Yarn, and the Blueprint environment automatically
+5. Runs the Blueprint installer itself
+6. Continues into the addon installer to extend your setup further
+7. Finishes with a clean summary banner once everything is complete
+
+No manual intervention is needed at any point after confirming the prompt.
+
+---
+
+## 🖥️ Usage Example
+
+```bash
+$ bash <(curl -fsSL https://raw.githubusercontent.com/atifqmi-max/blueprint-install/main/install.sh)
+
+============================================================
+                   LashariGamer Script
+============================================================
+                     Made By LashariGamer
+
+Continue Installing (y/n): y
+Installation Starting...
+...
+Thanks For Using This Script
+```
 
 ---
 
 ## ❓ FAQ
 
-**Q: Kya mujhe manually koi command chalani hogi?**
-Nahi, sirf ek command chalani hai. Baqi sab script khud handle karega.
+**Do I need to run any command manually besides the install command?**
+No. A single command handles the entire installation from start to finish.
 
-**Q: Agar meri Pterodactyl directory `/var/www/pterodactyl` nahi hai?**
-Script mein `PTERODACTYL_DIRECTORY` variable define hai — agar path different hai, `install.sh` file mein wo variable edit kar lein.
+**What happens if I type `n` at the prompt?**
+The script exits immediately and nothing is installed or changed on your server.
 
-**Q: Kya ye script safe hai?**
-Script sirf official Blueprint Framework release aur ek third-party addon-installer script use karta hai. Use karne se pehle script ka content khud bhi review karlein.
+**What if my Pterodactyl Panel isn't at the default path?**
+The script expects Pterodactyl at `/var/www/pterodactyl`. If your setup differs, install Pterodactyl at that path or adjust your environment accordingly before running the script.
 
-**Q: Installation beech mein fail ho gayi, kya karun?**
-Ensure karein ke Pterodactyl already installed hai, `sudo` access available hai, aur internet connection stable hai. Phir dobara command run karein.
+**Is this script safe to run?**
+It only installs Blueprint Framework and its official addon installer. As with any script found online, it's good practice to review it before running it on a production server.
+
+**What should I do if installation fails midway?**
+Check that Pterodactyl is properly installed, you have sudo access, and your internet connection is stable — then simply run the command again.
 
 ---
 
 ## 📜 Credits
 
 - **Script by:** LashariGamer
-- **Blueprint Framework:** [BlueprintFramework/framework](https://github.com/BlueprintFramework/framework)
-- **Addon Installer:** [hopingboyz/blueprint](https://github.com/hopingboyz/blueprint)
+- **Framework used:** Blueprint Framework
 
 ---
 
-### Thanks For Using This Script ❤️
+<p align="center"><b>Thanks For Using This Script ❤️</b></p>
